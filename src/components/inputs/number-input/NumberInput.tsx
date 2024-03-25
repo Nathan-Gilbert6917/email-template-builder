@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 
 import './NumberInput.css';
 
-
 interface NumberInputProps {
     label: string; 
     type: "number";

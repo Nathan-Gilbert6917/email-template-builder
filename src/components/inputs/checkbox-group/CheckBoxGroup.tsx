@@ -4,7 +4,7 @@ import './CheckBoxGroup.css';
 import CheckBox from '../checkbox/CheckBox';
 
 
-interface CheckboxOption {
+export interface CheckboxOption {
   label: string;
   checked: boolean;
 }

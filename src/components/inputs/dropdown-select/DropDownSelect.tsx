@@ -2,11 +2,14 @@ import React, { FC } from 'react';
 
 import './DropDownSelect.css';
 
-
+export interface DropDownSelectValue {
+    value:string, 
+    text:string
+};
 interface DropDownSelectProps {
     label?: string;
     value: string;
-    options: {value:string, text:string}[];
+    options: DropDownSelectValue[];
     onChange: (value: string) => void;
 }
 

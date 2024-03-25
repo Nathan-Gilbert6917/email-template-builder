@@ -14,8 +14,8 @@ const RadioButtonGroup: FC<RadioButtonGroupProps> = (
     { label, options, selectedValue, onChange }
 ) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
-  };
+      onChange(event.target.value);
+    };
 
   return (
     <div className='radio-group-box'>

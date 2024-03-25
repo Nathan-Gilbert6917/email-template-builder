@@ -4,17 +4,26 @@ import './ModalOverlay.css';
 
 import GeneralButton from '../../inputs/general-button/GeneralButton';
 
-interface ModalOverlayProps { 
+interface ModalOverlayProps {
+    customClassName?: string;
     title: string; 
     show: boolean; 
-    children: ReactNode; 
+    children?: ReactNode; 
     handleClose: () => void;
+    handleDone: () => void;
 }
 
 const ModalOverlay: FC<ModalOverlayProps> = (
-    { title, handleClose, show, children }
+    { customClassName, title, handleClose, handleDone, show, children }
 ) => {
-    const showHideClassName = show ? "modal-container display-block" : "modal-container display-none";
+
+    const className: string = customClassName ? customClassName : "modal-container";
+    const showHideClassName = show ? `${className} display-block` : `${className} display-none`;
+
+    const handleSubmit = () => {
+        handleDone();
+        handleClose();
+    };
 
     return (
         <div className={showHideClassName}>
@@ -26,7 +35,7 @@ const ModalOverlay: FC<ModalOverlayProps> = (
                     {children}
                 </div>  
                 <div className="modal-footer-container">
-                    <GeneralButton label="Done" onClick={handleClose}/>
+                    <GeneralButton label="Done" onClick={handleSubmit}/>
                     <GeneralButton label="Cancel" isInverted onClick={handleClose}/>
                 </div>
             </section>

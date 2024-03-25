@@ -34,7 +34,7 @@ const GeneralButton: FC<ButtonProps> = ({
 
   return (
     <button onClick={onClick} className={buttonClass} disabled={disabled}>
-      <span className={buttonIconClass}>{icon}</span>
+      {icon ? <span className={buttonIconClass}>{icon}</span>: <></>}
       <span className="button-label">{label}</span>
     </button>
   );
