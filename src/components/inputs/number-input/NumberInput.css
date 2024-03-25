@@ -1,0 +1,45 @@
+.number-input-box {
+  width: 100%;
+  height: 4rem;
+  box-sizing: border-box;
+}
+
+.number-input-box .number-input-inner {
+  position: relative;
+  bottom: -25px;
+}
+
+.number-input-box .number-input-inner .number-input-field {  
+  width: 100%;
+  font-size: 1.5em;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-bottom: 2px solid rgb(0, 0, 0);
+  outline: none;
+  background: transparent;
+}
+
+.number-input-box .number-input-inner .input-label {
+  position: absolute;
+  top:-0.8rem;
+  left: 0;
+  padding: 10px 0;
+  font-size: 1.5em;
+  color: rgb(0, 0, 0);
+  pointer-events: none;
+  transition: .5s;
+  transform-origin: left top;
+}
+
+.number-input-box .number-input-inner .number-input-field:focus ~ .input-label,
+.number-input-box .number-input-inner .number-input-field.active ~ .input-label {
+  top: -2rem;
+  left: 0;
+  color: #000000;
+  font-size: 1rem;
+}
+
+.number-input-field:-webkit-autofill,
+.number-input-field:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}

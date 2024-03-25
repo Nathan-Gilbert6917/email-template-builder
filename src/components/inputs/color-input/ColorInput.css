@@ -1,0 +1,46 @@
+.color-input-box {
+  box-sizing: border-box;
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.color-input-box .color-input-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.8rem;
+  height: 2rem;
+}
+
+.color-input-box .color-input-inner .color-input-field {
+  width: 4rem;
+  height: 2.2rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.color-input-box .color-input-inner .color-input-field::-webkit-color-swatch {
+  border-radius: 2rem;
+  border: 1px solid #000000;
+}
+
+.color-input-box .color-input-inner .color-input-field::-moz-color-swatch {
+  border-radius: 2rem;
+  border: 1px solid #000000;
+}
+
+
+.color-input-box .color-input-inner .color-input-label,
+.color-input-box .color-input-inner .color-input-value {
+  font-size: 1rem;
+  color: #000000;
+  pointer-events: none;
+}

@@ -1,0 +1,41 @@
+.button {
+    background-color: #DB324D;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 38px;
+    color: #FBFBF2;
+    font-weight: bold;
+    font-size: 1em;
+    border: 0px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.circular {
+    border-radius: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.button-icon {
+    margin-right: 5px;
+    overflow: hidden;
+}
+
+.button-label {
+    overflow: hidden;
+}
+
+.invert {
+    color: #DB324D;
+    background-color: #FBFBF2;
+}
+
+.shadow {
+    box-shadow: 0 2px 24px rgba(0, 0, 0, 0.1);
+}
+
+.button:disabled {
+    background-color: #DB324D33;
+}
