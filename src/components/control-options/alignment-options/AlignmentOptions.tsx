@@ -4,7 +4,7 @@ import './AlignmentOptions.css';
 import RadioButtonGroup from '../../inputs/radio-button-group/RadioButtonGroup';
 
 interface AlignmentOptionsProps {
-    value: string;
+    value?: string;
     onChange: (value: string) => void;
 }
 
@@ -18,7 +18,7 @@ const AlignmentOptions: FC<AlignmentOptionsProps> = (
         { label: 'Align Right', value: 'right' },
     ];
 
-    const [selectedRadioOption, setSelectedRadioOption] = useState(value);
+    const [selectedRadioOption, setSelectedRadioOption] = useState(value ? value : radioOptions[0].value);
 
     const handleAlignmentChange = (value: string) => {
         setSelectedRadioOption(value);

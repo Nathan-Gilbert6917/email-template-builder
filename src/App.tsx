@@ -15,6 +15,18 @@ import CheckBox from './components/inputs/checkbox/CheckBox';
 import CheckBoxGroup from './components/inputs/checkbox-group/CheckBoxGroup';
 import ModalOverlay from './components/containers/modal-overlay/ModalOverlay';
 import BackgroundOptions, { BackgroundValues } from './components/control-options/background-options/BackgroundOptions';
+import AlignmentOptions from './components/control-options/alignment-options/AlignmentOptions';
+import BorderOptions, { BorderValueTypes } from './components/control-options/border-options/BorderOptions';
+import HeaderOptions, { HeaderValueTypes } from './components/control-options/header-options/HeaderOptions';
+import ImageOptions, { ImageValueTypes } from './components/control-options/image-options/ImageOptions';
+import LinkButtonOptions, { LinkButtonValueTypes } from './components/control-options/link-button-options/LinkButtonOptions';
+import ShadowOptions, { ShadowValueTypes } from './components/control-options/shadow-options/ShadowOptions';
+import HeightOptions, { HeightValueTypes } from './components/control-options/sizing-options/height-options/HeightOptions';
+import WidthOptions, { WidthValueTypes } from './components/control-options/sizing-options/width-options/WidthOptions';
+import PaddingOptions, { PaddingValueTypes } from './components/control-options/spacing-options/padding-options/PaddingOptions';
+import MarginOptions, { MarginValueTypes } from './components/control-options/spacing-options/margin-options/MarginOptions';
+import TextDecorationOptions, { TextDecorationOptionValueTypes } from './components/control-options/text-decoration-options/TextDecorationOptions';
+import TextOptions, { TextOptionValueTypes } from './components/control-options/text-options/TextOptions';
 
 const App = () => {
     const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -65,49 +77,68 @@ const App = () => {
         alert('Modal alert done');
     }
 
-  const initialBackgoundValues: BackgroundValues = {
-    backgroundColor: "#000000",
-    borderRadius: 0,
-    borderSelected: false,
-    border: {
-        borderSize: 0,
-        borderType: "none",
-        borderColor: "#000000",
-    },
-    shadowSelected: false,
-    shadow: {
-        horizontalOffset: 0,
-        verticalOffset: 0,
-        blurRadius: 0,
-        spreadRadius: 0,
-        shadowColor: "#000000",
-        shadowInset: false,
+    const handleAlignmentOptionChange: (values: string) => void = (values) => {
+      console.log('Alignment', values);
+      alert(values);
     }
-  }
 
-  const handleBackgroundOptionChange: (values: BackgroundValues) => void = (values) => {
-    console.log('Background', values);
-    alert(values);
-  }
+    const initialBackgoundValues: BackgroundValues = {
+      backgroundColor: "#000000",
+      borderRadius: 0,
+      borderSelected: false,
+      border: {
+          borderSize: 0,
+          borderType: "none",
+          borderColor: "#000000",
+      },
+      shadowSelected: false,
+      shadow: {
+          horizontalOffset: 0,
+          verticalOffset: 0,
+          blurRadius: 0,
+          spreadRadius: 0,
+          shadowColor: "#000000",
+          shadowInset: false,
+      }
+    }
 
-  return (
-    <div className="App">
-      <div className='test-div'>
-        <NumberInput label={'Test Number'} type={'number'} value={number} name={'Test'} min={0} max={10}  onChange={setNumber} />
-        <TextInput label={'Test'} type="text" value={text} name={"Test"} onChange={setText} />
-        <ColorInput label={'Border Color Select'} value={color} onChange={setColor}/>
-        <DropDownSelect value={optionSelected} label={"Test Select"} options={selectOptions} onChange={setOptionSelected} />
-        <RadioButtonGroup label='Test Radio' options={radioOptions} selectedValue={selectedRadioOption} onChange={setSelectedRadioOption} />
-        <GeneralButton label={'Test'} icon={<FontAwesomeIcon icon={faCoffee} />} onClick={handleButtonClick} />
-        <IconButton icon={<FontAwesomeIcon icon={faCoffee} />} onClick={handleButtonClick} />
-        <CheckBox label={'Test'} checked={singleCheckboxChecked} onChange={handleSingleCheckboxChange} />
-        <CheckBoxGroup options={checkboxGroupOptions} hasSelectAll onChange={handleCheckboxGroupChange} />
-        <GeneralButton label={'Test Modal'} onClick={handleModalShow} />
-        <ModalOverlay title={'Test Modal'} show={showModal} children={undefined} handleDone={handleModalDone} handleClose={handleModalShow} />
-        <BackgroundOptions values={initialBackgoundValues} onChange={handleBackgroundOptionChange} />
-      </div>
-    </div>
-  );
+    const handleBackgroundOptionChange: (values: BackgroundValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
+
+  
+
+    return (
+        <div className="App">
+            <div className='test-div'>
+                <NumberInput label={'Test Number'} type={'number'} value={number} name={'Test'} min={0} max={10}  onChange={setNumber} />
+                <TextInput label={'Test'} type="text" value={text} name={"Test"} onChange={setText} />
+                <ColorInput label={'Border Color Select'} value={color} onChange={setColor}/>
+                <DropDownSelect value={optionSelected} label={"Test Select"} options={selectOptions} onChange={setOptionSelected} />
+                <RadioButtonGroup label='Test Radio' options={radioOptions} selectedValue={selectedRadioOption} onChange={setSelectedRadioOption} />
+                <GeneralButton label={'Test'} icon={<FontAwesomeIcon icon={faCoffee} />} onClick={handleButtonClick} />
+                <IconButton icon={<FontAwesomeIcon icon={faCoffee} />} onClick={handleButtonClick} />
+                <CheckBox label={'Test'} checked={singleCheckboxChecked} onChange={handleSingleCheckboxChange} />
+                <CheckBoxGroup options={checkboxGroupOptions} hasSelectAll onChange={handleCheckboxGroupChange} />
+                <GeneralButton label={'Test Modal'} onClick={handleModalShow} />
+                <ModalOverlay title={'Test Modal'} show={showModal} children={undefined} handleDone={handleModalDone} handleClose={handleModalShow} />
+                <AlignmentOptions onChange={handleAlignmentOptionChange} />
+                <BackgroundOptions values={initialBackgoundValues} onChange={handleBackgroundOptionChange} />
+                <BorderOptions values={undefined} onChange={} />
+                <HeaderOptions value={undefined} onChange={} />
+                <ImageOptions values={undefined} onChange={} />
+                <LinkButtonOptions values={undefined} onChange={} />
+                <ShadowOptions values={undefined} onChange={} />
+                <HeightOptions values={undefined} onChange={} />
+                <WidthOptions values={undefined} onChange={} />
+                <PaddingOptions values={undefined} onChange={} />
+                <MarginOptions values={undefined} onChange={} />
+                <TextDecorationOptions values={undefined} onChange={} />
+                <TextOptions values={undefined} onChange={} />
+            </div>
+        </div>
+    );
 }
 
 export default App;

@@ -11,7 +11,7 @@ export interface HeaderValueTypes {
 }
 
 interface HeaderOptionsProps {
-    value: HeaderValueTypes;
+    value?: HeaderValueTypes;
     onChange: (value: HeaderValueTypes) => void;
 }
 
@@ -28,7 +28,11 @@ const HeaderOptions: FC<HeaderOptionsProps> = (
         { text: 'H6', value: 'h6' },
     ]
 
-    const [headerOptionValues, setHeaderOptionValues] = useState(value);
+    const initialHeaderValue: HeaderValueTypes = {
+        type: "h1"
+    }
+
+    const [headerOptionValues, setHeaderOptionValues] = useState(value ? value:initialHeaderValue);
 
     const isHeaderType = (value: string): value is HeaderType => {
         return ["h1", "h2", "h3", "h4", "h5", "h6"].includes(value);

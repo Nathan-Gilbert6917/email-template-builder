@@ -15,7 +15,7 @@ export interface BorderValueTypes {
 }
 
 interface BorderOptionsProps {
-    values: BorderValueTypes
+    values?: BorderValueTypes
     onChange: (value: BorderValueTypes) => void;
 }
 
@@ -36,7 +36,13 @@ const BorderOptions: FC<BorderOptionsProps> = (
         { text: 'Hidden', value: 'hidden' },
     ]
 
-    const [borderOptionValues, setBorderOptionValues] = useState(values);
+    const initialBorderValue: BorderValueTypes = {
+        borderSize:1, 
+        borderType:"solid", 
+        borderColor:"#000000"
+    }
+
+    const [borderOptionValues, setBorderOptionValues] = useState(values?values:initialBorderValue);
 
     const isBorderType = (value: string): value is BorderTypesType => {
         return ["solid", "dotted", "dashed", "double", "groove", "ridge", "inset", "outset", "none", "hidden"].includes(value);
