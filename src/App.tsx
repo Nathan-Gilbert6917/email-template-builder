@@ -13,6 +13,7 @@ import IconButton from './components/inputs/icon-button/IconButton';
 import GeneralButton from './components/inputs/general-button/GeneralButton';
 import CheckBox from './components/inputs/checkbox/CheckBox';
 import CheckBoxGroup from './components/inputs/checkbox-group/CheckBoxGroup';
+import ModalOverlay from './components/containers/modal-overlay/ModalOverlay';
 
 const App = () => {
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -41,6 +42,8 @@ const App = () => {
     { label: 'Option 3', checked: false },
   ]);
 
+  const [showModal, setModalShow] = useState(false);
+
   const handleSingleCheckboxChange = (checked: boolean) => {
     setSingleCheckboxChecked(checked);
   };
@@ -50,6 +53,9 @@ const App = () => {
     console.log(updatedOptions);
   };
 
+  const handleModalShow = () => {
+    setModalShow(!showModal);
+  }
 
   return (
     <div className="App">
@@ -63,6 +69,8 @@ const App = () => {
         <IconButton icon={<FontAwesomeIcon icon={faCoffee} />} onClick={handleButtonClick} />
         <CheckBox label={'Test'} checked={singleCheckboxChecked} onChange={handleSingleCheckboxChange} />
         <CheckBoxGroup options={checkboxGroupOptions} hasSelectAll onChange={handleCheckboxGroupChange} />
+        <GeneralButton label={'Test Modal'} onClick={handleModalShow} />
+        <ModalOverlay title={'Test Modal'} show={showModal} children={undefined} handleClose={handleModalShow} />
       </div>
     </div>
   );
