@@ -8,7 +8,7 @@ interface TemplateRendererProps {
 const TemplateRenderer: FC<TemplateRendererProps> = (
 ) => {
     return (
-        <div>
+        <div className='template-renderer'>
             
         </div>
     );

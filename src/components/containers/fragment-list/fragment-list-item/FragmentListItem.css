@@ -1,0 +1,63 @@
+.fragment-item-box {
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 500px;
+}
+
+.fragment-item-box:hover > .fragment-item-drag-icon {
+    color: #333;
+}
+
+.fragment-item-box:hover .fragment-item-icon-group > .fragment-item-hide-icon,
+.fragment-item-box:hover .fragment-item-icon-group > .fragment-item-edit-icon,
+.fragment-item-box:hover .fragment-item-icon-group > .fragment-item-delete-icon {
+    opacity: 1;
+}
+.fragment-item-front-content {
+    display: flex;
+    align-items: center;
+    min-width: 50%;
+}
+
+.fragment-item-content {
+    height: 24px;
+    padding: 0.5rem 0rem 0.5rem 1rem;
+    font-weight: bold;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fragment-item-drag-icon {
+    color: #88888888;
+}
+
+.fragment-item-drag-icon,
+.fragment-item-hide-icon,
+.fragment-item-edit-icon,
+.fragment-item-delete-icon {
+    transition: opacity 0.3s ease;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+}
+.fragment-item-icon-group {
+    display: flex;
+    width: 100px;
+    min-width: fit-content;
+    justify-content: flex-end;
+}
+.fragment-item-hide-icon,
+.fragment-item-edit-icon,
+.fragment-item-delete-icon {
+    opacity: 0;
+    justify-content: right;
+}
