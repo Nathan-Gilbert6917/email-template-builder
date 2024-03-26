@@ -1,16 +1,16 @@
 import React, { FC, useState } from 'react';
 
 import './FragmentList.css';
-import FragmentListItem, { FragmentListItemValues } from './fragment-list-item/FragmentListItem';
+import FragmentListItem, { FragmentValues } from './fragment-list-item/FragmentListItem';
 
 interface FragmentListProps {
-    items: FragmentListItemValues[];
+    items: FragmentValues[];
 }
 
 const FragmentList: FC<FragmentListProps> = (
     { items }
 ) => {
-    const [listItems, setListItems] = useState<FragmentListItemValues[]>(items);
+    const [listItems, setListItems] = useState<FragmentValues[]>(items);
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
     e.dataTransfer.setData('index', index.toString());

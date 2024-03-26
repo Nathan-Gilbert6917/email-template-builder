@@ -4,15 +4,22 @@ import './FragmentListItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faEdit, faEye, faEyeSlash, faTrash } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '../../../inputs/icon-button/IconButton';
+import { HeaderFragmentValues } from '../../../fragment-options/header/HeaderFragment';
+import { ImageFragmentValues } from '../../../fragment-options/image/ImageFragment';
+import { LinkButtonFragmentValues } from '../../../fragment-options/link-button/LinkButtonFragment';
+import { ParagraphFragmentValues } from '../../../fragment-options/paragraph/ParagraphFragment';
+import { fragmentTypeText } from '../../template-creator/TemplateCreator';
 
-export interface FragmentListItemValues {
-    id: string;
-    content: string;
+export type FragmentTypes = HeaderFragmentValues | ParagraphFragmentValues | LinkButtonFragmentValues | ImageFragmentValues;
+
+export interface FragmentValues {
+  id: string;
+  content: FragmentTypes;
 }
 
 interface FragmentListItemProps {
     id: string;
-    content: string;
+    content: FragmentTypes;
     onDragStart: (e: DragEvent<HTMLDivElement>, id: string) => void;
 }
 
@@ -30,6 +37,10 @@ const FragmentListItem: FC<FragmentListItemProps> = (
         setHideIcon(!hideIcon);
     }
 
+    const name = () => {
+        return fragmentTypeText(content.type);
+    }
+
     return (
         <div className='fragment-item-box' draggable id={id.toString()} onDragStart={handleDragStart}>
             <span className='fragment-item-front-content'>
@@ -37,7 +48,7 @@ const FragmentListItem: FC<FragmentListItemProps> = (
                     <FontAwesomeIcon icon={faBars} />
                 </span>
                 <span className='fragment-item-content'>
-                    {content}
+                    {name()}
                 </span>
             </span>
             <span className='fragment-item-icon-group'>

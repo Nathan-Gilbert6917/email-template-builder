@@ -12,10 +12,10 @@ import HeightOptions, { HeightOptionValues } from '../../control-options/sizing-
 export interface ImageFragmentValues {
     type: "image",
     imageValues: ImageOptionValues
-    alignmentValue: string,
-    backgroundValues: BackgroundOptionValues,
-    paddingValues: PaddingOptionValues,
-    marginValues: MarginOptionValues,
+    alignmentValue?: string,
+    backgroundValues?: BackgroundOptionValues,
+    paddingValues?: PaddingOptionValues,
+    marginValues?: MarginOptionValues,
     widthValues: WidthOptionValues,
     heightValues: HeightOptionValues
 }

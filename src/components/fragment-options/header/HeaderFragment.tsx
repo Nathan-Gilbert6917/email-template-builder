@@ -14,13 +14,13 @@ import HeightOptions, { HeightOptionValues } from '../../control-options/sizing-
 
 export interface HeaderFragmentValues {
     type: "header",
-    headerValue: HeaderOptionValues,
-    textValues: TextOptionValues,
-    textDecorationValues: TextDecorationOptionValues,
-    alignmentValue: string,
-    backgroundValues: BackgroundOptionValues,
-    paddingValues: PaddingOptionValues,
-    marginValues: MarginOptionValues,
+    headerValue?: HeaderOptionValues,
+    textValues?: TextOptionValues,
+    textDecorationValues?: TextDecorationOptionValues,
+    alignmentValue?: string,
+    backgroundValues?: BackgroundOptionValues,
+    paddingValues?: PaddingOptionValues,
+    marginValues?: MarginOptionValues,
     widthValues: WidthOptionValues,
     heightValues: HeightOptionValues
 }
