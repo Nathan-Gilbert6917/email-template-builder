@@ -41,7 +41,7 @@ const ParagraphFragment: FC<ParagraphFragmentProps> = (
     };
 
     return (
-        <div>
+        <div className='paragraph-fragment-box'>
             <TextOptions values={values.textValues} onChange={(values:TextOptionValues) => handleOptionChange({ textValues: values })} />
             <TextDecorationOptions values={values.textDecorationValues} onChange={(values:TextDecorationOptionValues) => handleOptionChange({ textDecorationValues: values })} />
             <AlignmentOptions value={values.alignmentValue} onChange={(value:string) => handleOptionChange({ alignmentValue: value })} />

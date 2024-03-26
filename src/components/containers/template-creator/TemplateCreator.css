@@ -1,3 +1,18 @@
 .template-creator-box {
     width: 100%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.fragment-list-container {
+    height: 90%;
+}
+
+.fragment-add-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 6rem;
 }

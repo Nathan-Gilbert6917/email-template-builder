@@ -9,12 +9,12 @@ const App = () => {
 
     return (
         <div className="App">
-            <div className='half-app'>
+            <div className='half-app-left'>
                 <TemplateCreator />
             </div>
-            <div className='half-app'>
-                {/* <TemplateRenderer /> */}
-                <Apping/>
+            <div className='half-app-right'>
+                <TemplateRenderer />
+                {/* <Apping/> */}
             </div>
         </div>
     );

@@ -27,7 +27,7 @@ const ModalOverlay: FC<ModalOverlayProps> = (
 
     return (
         <div className={showHideClassName}>
-            <section className="modal-main-container">
+            <div className="modal-main-container">
                 <div className="modal-header-container">
                     <h1 className="modal-title">{title}</h1>
                 </div>
@@ -38,7 +38,7 @@ const ModalOverlay: FC<ModalOverlayProps> = (
                     <GeneralButton label="Done" onClick={handleSubmit}/>
                     <GeneralButton label="Cancel" isInverted onClick={handleClose}/>
                 </div>
-            </section>
+            </div>
         </div>
     );
 }

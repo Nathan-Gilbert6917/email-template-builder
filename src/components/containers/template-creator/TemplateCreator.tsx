@@ -6,6 +6,8 @@ import { FragmentListItemValues } from '../fragment-list/fragment-list-item/Frag
 import ModalOverlay from '../modal-overlay/ModalOverlay';
 import GeneralButton from '../../inputs/general-button/GeneralButton';
 import ParagraphFragment, { ParagraphFragmentValues } from '../../fragment-options/paragraph/ParagraphFragment';
+import TemplateRenderer from '../template-renderer/TemplateRenderer';
+import DropDownSelect, { DropDownSelectValue } from '../../inputs/dropdown-select/DropDownSelect';
 
 interface TemplateCreatorProps {
 }
@@ -33,7 +35,7 @@ const TemplateCreator: FC<TemplateCreatorProps> = (
     ]
 
     const [showModal, setShowModal] = useState(false);
-
+    const [fragmentTypeSelected, setFragmentTypeSelected] = useState("header");
     const handleModalShow = () => {
         setShowModal(!showModal);
     }
@@ -58,15 +60,28 @@ const TemplateCreator: FC<TemplateCreatorProps> = (
         }
     }
 
+    const fragmentOptions:DropDownSelectValue[] = [
+        { text: 'Header', value: 'header' },
+        { text: 'Paragraph', value: 'paragraph' },
+        { text: 'Link Button', value: 'link-button' },
+        { text: 'Image', value: 'image' },
+    ];
+
+    const fragmentTypeText = fragmentOptions.filter(({value}) => value === fragmentTypeSelected)[0].text;
+
     return (
         <div className='template-creator-box'>
-            <div>
+            <div className='fragment-list-container'>
+                <h2>Template Fragments</h2>
                 <FragmentList items={fragmentList} />
+            </div>
+            <div className='fragment-add-container'>
+                <DropDownSelect label={'Fragment Type'} value={fragmentTypeSelected} options={fragmentOptions} onChange={setFragmentTypeSelected} />
                 <GeneralButton label={'Add Fragment'} onClick={handleModalShow} />
             </div>
-            
-            <ModalOverlay title={'Fragment Designer'} show={showModal} handleClose={handleModalShow} handleDone={handleModalDone}>
+            <ModalOverlay title={`${fragmentTypeText} Fragment Designer`} show={showModal} handleClose={handleModalShow} handleDone={handleModalDone}>
                 <ParagraphFragment values={fragmentValues} onChange={handleFragmentUpdate} />
+                <TemplateRenderer/>
             </ModalOverlay>
         </div>
     );
