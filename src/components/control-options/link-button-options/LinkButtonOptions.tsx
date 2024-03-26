@@ -3,14 +3,14 @@ import React, { FC, useState } from 'react';
 import './LinkButtonOptions.css';
 import TextInput from '../../inputs/text-input/TextInput';
 
-export interface LinkButtonValueTypes {
+export interface LinkButtonOptionValues {
     hrefLink: string;
-    imageSrc: string;
+    imageSrc?: string;
 }
 
 interface LinkButtonOptionsProps {
-   values: LinkButtonValueTypes,
-   onChange: (value: LinkButtonValueTypes) => void;
+   values: LinkButtonOptionValues,
+   onChange: (value: LinkButtonOptionValues) => void;
 }
 
 const LinkButtonOptions: FC<LinkButtonOptionsProps> = (
@@ -19,8 +19,8 @@ const LinkButtonOptions: FC<LinkButtonOptionsProps> = (
 
     const [linkButtonOptionValues, setLinkButtonOptionValues] = useState(values);
 
-    const handleOptionChange = (changedValues: Partial<LinkButtonValueTypes>) => {
-        const newValues: LinkButtonValueTypes = { ...linkButtonOptionValues, ...changedValues };
+    const handleOptionChange = (changedValues: Partial<LinkButtonOptionValues>) => {
+        const newValues: LinkButtonOptionValues = { ...linkButtonOptionValues, ...changedValues };
         setLinkButtonOptionValues(newValues);
         onChange(newValues);
     };

@@ -3,26 +3,29 @@ import React, { FC, useState } from 'react';
 import './MarginOptions.css';
 import NumberInput from '../../../inputs/number-input/NumberInput';
 
-export interface MarginValueTypes {
-    marginLeft: number;
-    marginTop: number;
-    marginRight: number;
-    marginBottom: number;
+export interface MarginOptionValues {
+    marginLeft?: number;
+    marginTop?: number;
+    marginRight?: number;
+    marginBottom?: number;
 }
 
 interface MarginOptionsProps {
-   values: MarginValueTypes,
-   onChange: (value: MarginValueTypes) => void;
+   values?: MarginOptionValues,
+   onChange: (value: MarginOptionValues) => void;
 }
 
 const MarginOptions: FC<MarginOptionsProps> = (
     { values, onChange }
 ) => {
 
-    const [sizingOptionValues, setSizingOptionValues] = useState(values);
+    const initalMarginValues:MarginOptionValues = {
+    }
 
-    const handleOptionChange = (changedValues: Partial<MarginValueTypes>) => {
-        const newValues: MarginValueTypes = { ...sizingOptionValues, ...changedValues };
+    const [sizingOptionValues, setSizingOptionValues] = useState(values?values:initalMarginValues);
+
+    const handleOptionChange = (changedValues: Partial<MarginOptionValues>) => {
+        const newValues: MarginOptionValues = { ...sizingOptionValues, ...changedValues };
         setSizingOptionValues(newValues);
         onChange(newValues);
     };

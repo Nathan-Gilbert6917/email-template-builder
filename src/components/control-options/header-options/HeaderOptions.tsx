@@ -6,13 +6,13 @@ import DropDownSelect, { DropDownSelectValue } from '../../inputs/dropdown-selec
 export type HeaderType =
     "h1" | "h2" | "h3" | "h4" | "h5" | "h6" 
 
-export interface HeaderValueTypes {
+export interface HeaderOptionValues {
     type: HeaderType
 }
 
 interface HeaderOptionsProps {
-    value?: HeaderValueTypes;
-    onChange: (value: HeaderValueTypes) => void;
+    value?: HeaderOptionValues;
+    onChange: (value: HeaderOptionValues) => void;
 }
 
 const HeaderOptions: FC<HeaderOptionsProps> = (
@@ -28,7 +28,7 @@ const HeaderOptions: FC<HeaderOptionsProps> = (
         { text: 'H6', value: 'h6' },
     ]
 
-    const initialHeaderValue: HeaderValueTypes = {
+    const initialHeaderValue: HeaderOptionValues = {
         type: "h1"
     }
 
@@ -38,8 +38,8 @@ const HeaderOptions: FC<HeaderOptionsProps> = (
         return ["h1", "h2", "h3", "h4", "h5", "h6"].includes(value);
     };
 
-    const handleOptionChange = (changedValues: Partial<HeaderValueTypes>) => {
-        const newValues: HeaderValueTypes = { ...headerOptionValues, ...changedValues };
+    const handleOptionChange = (changedValues: Partial<HeaderOptionValues>) => {
+        const newValues: HeaderOptionValues = { ...headerOptionValues, ...changedValues };
         setHeaderOptionValues(newValues);
         onChange(newValues);
     };

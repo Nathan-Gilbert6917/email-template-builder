@@ -8,20 +8,25 @@ import DropDownSelect, { DropDownSelectValue } from '../../inputs/dropdown-selec
 type BorderTypesType =
         "solid" | "dotted" | "dashed" | "double" | "groove" | "ridge" | "inset" | "outset" | "none" | "hidden";
 
-export interface BorderValueTypes {
-    borderSize: number;
+export interface BorderOptionValues {
+    borderSize?: number;
     borderType: BorderTypesType;
     borderColor: string;
 }
 
 interface BorderOptionsProps {
-    values?: BorderValueTypes
-    onChange: (value: BorderValueTypes) => void;
+    values?: BorderOptionValues
+    onChange: (value: BorderOptionValues) => void;
 }
 
 const BorderOptions: FC<BorderOptionsProps> = (
     { values, onChange }
 ) => {
+
+    const initialBorderValues:BorderOptionValues = {
+        borderType: "none",
+        borderColor: "#000000",
+    }
 
     const borderTypeOptions: DropDownSelectValue[] = [
         { text: 'Solid', value: 'solid' },
@@ -36,20 +41,14 @@ const BorderOptions: FC<BorderOptionsProps> = (
         { text: 'Hidden', value: 'hidden' },
     ]
 
-    const initialBorderValue: BorderValueTypes = {
-        borderSize:1, 
-        borderType:"solid", 
-        borderColor:"#000000"
-    }
-
-    const [borderOptionValues, setBorderOptionValues] = useState(values?values:initialBorderValue);
+    const [borderOptionValues, setBorderOptionValues] = useState(values?values:initialBorderValues);
 
     const isBorderType = (value: string): value is BorderTypesType => {
         return ["solid", "dotted", "dashed", "double", "groove", "ridge", "inset", "outset", "none", "hidden"].includes(value);
     };
 
-    const handleOptionChange = (changedValues: Partial<BorderValueTypes>) => {
-        const newValues: BorderValueTypes = { ...borderOptionValues, ...changedValues };
+    const handleOptionChange = (changedValues: Partial<BorderOptionValues>) => {
+        const newValues: BorderOptionValues = { ...borderOptionValues, ...changedValues };
         setBorderOptionValues(newValues);
         onChange(newValues);
     };

@@ -14,19 +14,19 @@ import GeneralButton from './components/inputs/general-button/GeneralButton';
 import CheckBox from './components/inputs/checkbox/CheckBox';
 import CheckBoxGroup from './components/inputs/checkbox-group/CheckBoxGroup';
 import ModalOverlay from './components/containers/modal-overlay/ModalOverlay';
-import BackgroundOptions, { BackgroundValues } from './components/control-options/background-options/BackgroundOptions';
+import BackgroundOptions, { BackgroundOptionValues } from './components/control-options/background-options/BackgroundOptions';
 import AlignmentOptions from './components/control-options/alignment-options/AlignmentOptions';
-import BorderOptions, { BorderValueTypes } from './components/control-options/border-options/BorderOptions';
-import HeaderOptions, { HeaderValueTypes } from './components/control-options/header-options/HeaderOptions';
-import ImageOptions, { ImageValueTypes } from './components/control-options/image-options/ImageOptions';
-import LinkButtonOptions, { LinkButtonValueTypes } from './components/control-options/link-button-options/LinkButtonOptions';
-import ShadowOptions, { ShadowValueTypes } from './components/control-options/shadow-options/ShadowOptions';
-import HeightOptions, { HeightValueTypes } from './components/control-options/sizing-options/height-options/HeightOptions';
-import WidthOptions, { WidthValueTypes } from './components/control-options/sizing-options/width-options/WidthOptions';
-import PaddingOptions, { PaddingValueTypes } from './components/control-options/spacing-options/padding-options/PaddingOptions';
-import MarginOptions, { MarginValueTypes } from './components/control-options/spacing-options/margin-options/MarginOptions';
-import TextDecorationOptions, { TextDecorationOptionValueTypes } from './components/control-options/text-decoration-options/TextDecorationOptions';
-import TextOptions, { TextOptionValueTypes } from './components/control-options/text-options/TextOptions';
+import BorderOptions, { BorderOptionValues } from './components/control-options/border-options/BorderOptions';
+import HeaderOptions, { HeaderOptionValues } from './components/control-options/header-options/HeaderOptions';
+import ImageOptions, { ImageOptionValues } from './components/control-options/image-options/ImageOptions';
+import LinkButtonOptions, { LinkButtonOptionValues } from './components/control-options/link-button-options/LinkButtonOptions';
+import ShadowOptions, { ShadowOptionValues } from './components/control-options/shadow-options/ShadowOptions';
+import HeightOptions, { HeightOptionValues } from './components/control-options/sizing-options/height-options/HeightOptions';
+import WidthOptions, { WidthOptionValues } from './components/control-options/sizing-options/width-options/WidthOptions';
+import PaddingOptions, { PaddingOptionValues } from './components/control-options/spacing-options/padding-options/PaddingOptions';
+import MarginOptions, { MarginOptionValues } from './components/control-options/spacing-options/margin-options/MarginOptions';
+import TextDecorationOptions, { TextDecorationOptionValues } from './components/control-options/text-decoration-options/TextDecorationOptions';
+import TextOptions, { TextOptionValues } from './components/control-options/text-options/TextOptions';
 
 const App = () => {
     const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -82,32 +82,84 @@ const App = () => {
       alert(values);
     }
 
-    const initialBackgoundValues: BackgroundValues = {
-      backgroundColor: "#000000",
-      borderRadius: 0,
-      borderSelected: false,
-      border: {
-          borderSize: 0,
-          borderType: "none",
-          borderColor: "#000000",
-      },
-      shadowSelected: false,
-      shadow: {
-          horizontalOffset: 0,
-          verticalOffset: 0,
-          blurRadius: 0,
-          spreadRadius: 0,
-          shadowColor: "#000000",
-          shadowInset: false,
-      }
-    }
-
-    const handleBackgroundOptionChange: (values: BackgroundValues) => void = (values) => {
+    const handleBackgroundOptionChange: (values: BackgroundOptionValues) => void = (values) => {
       console.log('Background', values);
       alert(values);
     }
 
+    const handleBorderOptionChange: (values: BorderOptionValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
+
+    const handleHeaderOptionChange: (values: HeaderOptionValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
+
+    const handleImageOptionChange: (values: ImageOptionValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
+
+    const handleLinkButtonOptionChange: (values: LinkButtonOptionValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
+
+    const handleShadowOptionChange: (values: ShadowOptionValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
+
+    const handleHeightOptionChange: (values: HeightOptionValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
+
+    const handleWidthOptionChange: (values: WidthOptionValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
+
+    const handlePaddingOptionChange: (values: PaddingOptionValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
+
+    const handleMarginOptionChange: (values: MarginOptionValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
+
+    const handleTextDecorationOptionChange: (values: TextDecorationOptionValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
+
+    const handleTextOptionChange: (values: TextOptionValues) => void = (values) => {
+      console.log('Background', values);
+      alert(values);
+    }
   
+    const initalImageValues:ImageOptionValues = {
+        imageLink: "",
+        altText: "",
+    }
+
+    const initalLinkButtonValues:LinkButtonOptionValues = {
+        hrefLink: "",
+    }
+
+    const initalHeightValues:HeightOptionValues = {
+        height: 50,
+        perecntHeight: false,
+    }
+
+    const initalWidthValues:WidthOptionValues = {
+        width: 120,
+        percentWidth: false,
+    }
 
     return (
         <div className="App">
@@ -124,18 +176,18 @@ const App = () => {
                 <GeneralButton label={'Test Modal'} onClick={handleModalShow} />
                 <ModalOverlay title={'Test Modal'} show={showModal} children={undefined} handleDone={handleModalDone} handleClose={handleModalShow} />
                 <AlignmentOptions onChange={handleAlignmentOptionChange} />
-                <BackgroundOptions values={initialBackgoundValues} onChange={handleBackgroundOptionChange} />
-                <BorderOptions values={undefined} onChange={} />
-                <HeaderOptions value={undefined} onChange={} />
-                <ImageOptions values={undefined} onChange={} />
-                <LinkButtonOptions values={undefined} onChange={} />
-                <ShadowOptions values={undefined} onChange={} />
-                <HeightOptions values={undefined} onChange={} />
-                <WidthOptions values={undefined} onChange={} />
-                <PaddingOptions values={undefined} onChange={} />
-                <MarginOptions values={undefined} onChange={} />
-                <TextDecorationOptions values={undefined} onChange={} />
-                <TextOptions values={undefined} onChange={} />
+                <BackgroundOptions onChange={handleBackgroundOptionChange} />
+                <BorderOptions onChange={handleBorderOptionChange} />
+                <HeaderOptions onChange={handleHeaderOptionChange} />
+                <ImageOptions values={initalImageValues} onChange={handleImageOptionChange} />
+                <LinkButtonOptions values={initalLinkButtonValues} onChange={handleLinkButtonOptionChange} />
+                <ShadowOptions onChange={handleShadowOptionChange} />
+                <HeightOptions values={initalHeightValues} onChange={handleHeightOptionChange} />
+                <WidthOptions values={initalWidthValues} onChange={handleWidthOptionChange} />
+                <PaddingOptions onChange={handlePaddingOptionChange} />
+                <MarginOptions onChange={handleMarginOptionChange} />
+                <TextDecorationOptions onChange={handleTextDecorationOptionChange} />
+                <TextOptions onChange={handleTextOptionChange} />
             </div>
         </div>
     );

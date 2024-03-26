@@ -3,14 +3,14 @@ import React, { FC, useState } from 'react';
 import './ImageOptions.css';
 import TextInput from '../../inputs/text-input/TextInput';
 
-export interface ImageValueTypes {
+export interface ImageOptionValues {
     imageLink: string;
     altText: string;
 }
 
 interface ImageOptionsProps {
-   values: ImageValueTypes,
-   onChange: (value: ImageValueTypes) => void;
+   values: ImageOptionValues,
+   onChange: (value: ImageOptionValues) => void;
 }
 
 const ImageOptions: FC<ImageOptionsProps> = (
@@ -19,8 +19,8 @@ const ImageOptions: FC<ImageOptionsProps> = (
 
     const [imageOptionValues, setImageOptionValues] = useState(values);
 
-    const handleOptionChange = (changedValues: Partial<ImageValueTypes>) => {
-        const newValues: ImageValueTypes = { ...imageOptionValues, ...changedValues };
+    const handleOptionChange = (changedValues: Partial<ImageOptionValues>) => {
+        const newValues: ImageOptionValues = { ...imageOptionValues, ...changedValues };
         setImageOptionValues(newValues);
         onChange(newValues);
     };

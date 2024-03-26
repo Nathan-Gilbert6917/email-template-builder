@@ -11,8 +11,8 @@ type TextFontType = "Arial" | "Verdana" | "Tahoma" | "'Trebuchet MS'" | "'Times 
 
 type TextStyleType = "normal" | "italic" | "oblique";
 
-export interface TextOptionValueTypes {
-    text: string;
+export interface TextOptionValues {
+    text?: string;
     font: TextFontType;
     fontSize: number;
     textColor: string;
@@ -21,8 +21,8 @@ export interface TextOptionValueTypes {
 }
 
 interface TextOptionsProps {
-   values: TextOptionValueTypes,
-   onChange: (value: TextOptionValueTypes) => void;
+   values?: TextOptionValues,
+   onChange: (value: TextOptionValues) => void;
 }
 
 const TextOptions: FC<TextOptionsProps> = (
@@ -46,7 +46,15 @@ const TextOptions: FC<TextOptionsProps> = (
         { text: "oblique", value: "oblique"}
     ]
 
-    const [textOptionValues, setTextOptionValues] = useState(values);
+    const initalTextValues:TextOptionValues = {
+        font: "Arial",
+        fontSize: 12,
+        textColor: "#000000",
+        boldText: false,
+        textStyle: "normal",
+    }
+
+    const [textOptionValues, setTextOptionValues] = useState(values?values:initalTextValues);
 
     const isTextFontType = (value: string): value is TextFontType => {
         return ["Arial", "Verdana", "Tahoma", "'Trebuchet MS'", "'Times New Roman'", "Georgia", "'Courier New'", "Roboto"].includes(value);
@@ -56,8 +64,8 @@ const TextOptions: FC<TextOptionsProps> = (
         return ["normal", "italic", "oblique"].includes(value);
     };
 
-    const handleOptionChange = (changedValues: Partial<TextOptionValueTypes>) => {
-        const newValues: TextOptionValueTypes = { ...textOptionValues, ...changedValues };
+    const handleOptionChange = (changedValues: Partial<TextOptionValues>) => {
+        const newValues: TextOptionValues = { ...textOptionValues, ...changedValues };
         setTextOptionValues(newValues);
         onChange(newValues);
     };

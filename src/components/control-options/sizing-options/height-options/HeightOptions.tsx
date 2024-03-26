@@ -1,19 +1,19 @@
 import React, { FC, useState } from 'react';
 
-import './SpacingOptions.css';
+import './HeightOptions.css';
 import NumberInput from '../../../inputs/number-input/NumberInput';
 import CheckBox from '../../../inputs/checkbox/CheckBox';
 
-export interface HeightValueTypes {
+export interface HeightOptionValues {
     height: number;
     perecntHeight: boolean;
-    minHeight: number;
-    maxHeight: number;
+    minHeight?: number;
+    maxHeight?: number;
 }
 
 interface HeightOptionsProps {
-   values: HeightValueTypes,
-   onChange: (value: HeightValueTypes) => void;
+   values: HeightOptionValues,
+   onChange: (value: HeightOptionValues) => void;
 }
 
 const HeightOptions: FC<HeightOptionsProps> = (
@@ -22,8 +22,8 @@ const HeightOptions: FC<HeightOptionsProps> = (
 
     const [sizingOptionValues, setSizingOptionValues] = useState(values);
 
-    const handleOptionChange = (changedValues: Partial<HeightValueTypes>) => {
-        const newValues: HeightValueTypes = { ...sizingOptionValues, ...changedValues };
+    const handleOptionChange = (changedValues: Partial<HeightOptionValues>) => {
+        const newValues: HeightOptionValues = { ...sizingOptionValues, ...changedValues };
         setSizingOptionValues(newValues);
         onChange(newValues);
     };

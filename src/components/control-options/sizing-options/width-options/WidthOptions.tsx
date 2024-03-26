@@ -1,19 +1,19 @@
 import React, { FC, useState } from 'react';
 
-import './SpacingOptions.css';
+import './WidthOptions.css';
 import NumberInput from '../../../inputs/number-input/NumberInput';
 import CheckBox from '../../../inputs/checkbox/CheckBox';
 
-export interface WidthValueTypes {
+export interface WidthOptionValues {
     width: number;
     percentWidth: boolean;
-    minWidth: number;
-    maxWidth: number;
+    minWidth?: number;
+    maxWidth?: number;
 }
 
 interface WidthOptionsProps {
-   values: WidthValueTypes,
-   onChange: (value: WidthValueTypes) => void;
+   values: WidthOptionValues,
+   onChange: (value: WidthOptionValues) => void;
 }
 
 const WidthOptions: FC<WidthOptionsProps> = (
@@ -22,8 +22,8 @@ const WidthOptions: FC<WidthOptionsProps> = (
 
     const [sizingOptionValues, setSizingOptionValues] = useState(values);
 
-    const handleOptionChange = (changedValues: Partial<WidthValueTypes>) => {
-        const newValues: WidthValueTypes = { ...sizingOptionValues, ...changedValues };
+    const handleOptionChange = (changedValues: Partial<WidthOptionValues>) => {
+        const newValues: WidthOptionValues = { ...sizingOptionValues, ...changedValues };
         setSizingOptionValues(newValues);
         onChange(newValues);
     };

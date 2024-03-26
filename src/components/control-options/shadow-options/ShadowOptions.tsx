@@ -5,38 +5,33 @@ import NumberInput from '../../inputs/number-input/NumberInput';
 import ColorInput from '../../inputs/color-input/ColorInput';
 import CheckBox from '../../inputs/checkbox/CheckBox';
 
-export interface ShadowValueTypes {
-    horizontalOffset: number;
-    verticalOffset: number;
-    blurRadius: number;
-    spreadRadius: number;
+export interface ShadowOptionValues {
+    horizontalOffset?: number;
+    verticalOffset?: number;
+    blurRadius?: number;
+    spreadRadius?: number;
     shadowColor: string;
     shadowInset: boolean;
 }
 
 interface ShadowOptionsProps {
-    values?: ShadowValueTypes
-    onChange: (value: ShadowValueTypes) => void;
+    values?: ShadowOptionValues
+    onChange: (value: ShadowOptionValues) => void;
 }
 
 const ShadowOptions: FC<ShadowOptionsProps> = (
     { values, onChange }
 ) => {
 
-    const initialShadowValue: ShadowValueTypes = {
-        horizontalOffset: 0,
-        verticalOffset: 0,
-        blurRadius: 1,
-        spreadRadius: 1,
+    const initialShadowValue: ShadowOptionValues = {
         shadowColor: "#000000",
         shadowInset: false
     }
 
-
     const [shadowOptionValues, setShadowOptionValues] = useState(values?values:initialShadowValue);
 
-    const handleOptionChange = (changedValues: Partial<ShadowValueTypes>) => {
-        const newValues: ShadowValueTypes = { ...shadowOptionValues, ...changedValues };
+    const handleOptionChange = (changedValues: Partial<ShadowOptionValues>) => {
+        const newValues: ShadowOptionValues = { ...shadowOptionValues, ...changedValues };
         setShadowOptionValues(newValues);
         onChange(newValues);
     };

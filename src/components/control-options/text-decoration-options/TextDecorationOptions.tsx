@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import './TextOptions.css';
+import './TextDecorationOptions.css';
 import CheckBoxGroup, { CheckboxOption } from '../../inputs/checkbox-group/CheckBoxGroup';
 import DropDownSelect, { DropDownSelectValue } from '../../inputs/dropdown-select/DropDownSelect';
 import ColorInput from '../../inputs/color-input/ColorInput';
@@ -9,22 +9,22 @@ import NumberInput from '../../inputs/number-input/NumberInput';
 
 export type TextDecorationStyleType = "normal" | "italic" | "oblique";
 
-export interface TextDecorationValues {
+export interface TextDecorationOptionValuesValues {
     underlined: boolean;
     lineThrough: boolean;
     overline: boolean;
 }
 
-export interface TextDecorationOptionValueTypes {
-    values: TextDecorationValues;
+export interface TextDecorationOptionValues {
+    values: TextDecorationOptionValuesValues;
     style: TextDecorationStyleType;
     color: string;
     size: number;
 }
 
 interface TextDecorationOptionsProps {
-   values: TextDecorationOptionValueTypes,
-   onChange: (value: TextDecorationOptionValueTypes) => void;
+   values?: TextDecorationOptionValues,
+   onChange: (value: TextDecorationOptionValues) => void;
 }
 
 const TextDecorationOptions: FC<TextDecorationOptionsProps> = (
@@ -43,14 +43,25 @@ const TextDecorationOptions: FC<TextDecorationOptionsProps> = (
         { text: "oblique", value: "oblique"}
     ]
 
-    const [textDecorationOptionValues, setTextDecorationOptionValues] = useState(values);
+    const initalTextDecorationValues:TextDecorationOptionValues = {
+        values: {
+            underlined: false,
+            lineThrough: false,
+            overline: false,
+        },
+        style: "normal",
+        color: "#000000",
+        size: 0
+    }
+
+    const [textDecorationOptionValues, setTextDecorationOptionValues] = useState(values?values:initalTextDecorationValues);
 
     const isTextDecorationStyleType = (value: string): value is TextDecorationStyleType => {
         return ["Arial", "Verdana", "Tahoma", "'Trebuchet MS'", "'Times New Roman'", "Georgia", "'Courier New'", "Roboto"].includes(value);
     };
 
-    const handleOptionChange = (changedValues: Partial<TextDecorationOptionValueTypes>) => {
-        const newValues: TextDecorationOptionValueTypes = { ...textDecorationOptionValues, ...changedValues };
+    const handleOptionChange = (changedValues: Partial<TextDecorationOptionValues>) => {
+        const newValues: TextDecorationOptionValues = { ...textDecorationOptionValues, ...changedValues };
         setTextDecorationOptionValues(newValues);
         onChange(newValues);
     };

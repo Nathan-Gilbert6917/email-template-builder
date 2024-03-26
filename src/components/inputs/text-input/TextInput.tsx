@@ -6,7 +6,7 @@ import './TextInput.css';
 interface TextInputProps {
     label: string; 
     type: "text" | "password";
-    value: string;
+    value?: string;
     name: string;
     isRequired?: boolean;
     onChange: (value: string) => void;

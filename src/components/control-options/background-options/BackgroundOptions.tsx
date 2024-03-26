@@ -4,31 +4,51 @@ import './BackgroundOptions.css';
 import ColorInput from '../../inputs/color-input/ColorInput';
 import NumberInput from '../../inputs/number-input/NumberInput';
 import CheckBox from '../../inputs/checkbox/CheckBox';
-import BorderOptions, { BorderValueTypes } from '../border-options/BorderOptions';
-import ShadowOptions, { ShadowValueTypes } from '../shadow-options/ShadowOptions';
+import BorderOptions, { BorderOptionValues } from '../border-options/BorderOptions';
+import ShadowOptions, { ShadowOptionValues } from '../shadow-options/ShadowOptions';
 
-export interface BackgroundValues {
+export interface BackgroundOptionValues {
     backgroundColor: string;
     borderRadius: number;
     borderSelected: boolean;
-    border: BorderValueTypes;
+    border: BorderOptionValues;
     shadowSelected: boolean;
-    shadow: ShadowValueTypes;
+    shadow: ShadowOptionValues;
 }
 
 interface BackgroundOptionsProps {
-    values: BackgroundValues;
-    onChange: (value: BackgroundValues) => void;
+    values?: BackgroundOptionValues;
+    onChange: (value: BackgroundOptionValues) => void;
 }
 
 const BackgroundOptions: FC<BackgroundOptionsProps> = (
     { values, onChange }
 ) => {
 
-    const [backgroundOptionValues, setBackgroundOptionValues] = useState(values);
+    const initialBackgoundValues: BackgroundOptionValues = {
+      backgroundColor: "#000000",
+      borderRadius: 0,
+      borderSelected: false,
+      border: {
+          borderSize: 0,
+          borderType: "none",
+          borderColor: "#000000",
+      },
+      shadowSelected: false,
+      shadow: {
+          horizontalOffset: 0,
+          verticalOffset: 0,
+          blurRadius: 0,
+          spreadRadius: 0,
+          shadowColor: "#000000",
+          shadowInset: false,
+      }
+    }
 
-    const handleOptionChange = (changedValues: Partial<BackgroundValues>) => {
-        const newValues: BackgroundValues = { ...backgroundOptionValues, ...changedValues };
+    const [backgroundOptionValues, setBackgroundOptionValues] = useState(values?values:initialBackgoundValues);
+
+    const handleOptionChange = (changedValues: Partial<BackgroundOptionValues>) => {
+        const newValues: BackgroundOptionValues = { ...backgroundOptionValues, ...changedValues };
         setBackgroundOptionValues(newValues);
         onChange(newValues);
     };
@@ -39,12 +59,12 @@ const BackgroundOptions: FC<BackgroundOptionsProps> = (
             <NumberInput label={'Border Radius'} type={'number'} name={'Border Radius'} value={backgroundOptionValues.borderRadius} max={0} min={100} onChange={(value: number) => handleOptionChange({ borderRadius: value })} />
             <CheckBox label={'Edit Border'} checked={backgroundOptionValues.borderSelected} onChange={(value: boolean) => handleOptionChange({ borderSelected: value })} />
             {backgroundOptionValues.borderSelected
-                ?<BorderOptions values={backgroundOptionValues.border} onChange={(value: BorderValueTypes) => handleOptionChange({ border: value})} />
+                ?<BorderOptions values={backgroundOptionValues.border} onChange={(value: BorderOptionValues) => handleOptionChange({ border: value})} />
                 :<></>
             }
             <CheckBox label={'Edit Shadow'} checked={backgroundOptionValues.shadowSelected} onChange={(value: boolean) => handleOptionChange({ shadowSelected: value })} />
             {backgroundOptionValues.shadowSelected 
-                ?<ShadowOptions values={backgroundOptionValues.shadow} onChange={(value: ShadowValueTypes) => handleOptionChange({ shadow: value})} />
+                ?<ShadowOptions values={backgroundOptionValues.shadow} onChange={(value: ShadowOptionValues) => handleOptionChange({ shadow: value})} />
                 :<></>
             }
         </div>

@@ -3,26 +3,29 @@ import React, { FC, useState } from 'react';
 import './PaddingOptions.css';
 import NumberInput from '../../../inputs/number-input/NumberInput';
 
-export interface PaddingValueTypes {
-    PaddingLeft: number;
-    PaddingTop: number;
-    PaddingRight: number;
-    PaddingBottom: number;
+export interface PaddingOptionValues {
+    PaddingLeft?: number;
+    PaddingTop?: number;
+    PaddingRight?: number;
+    PaddingBottom?: number;
 }
 
 interface PaddingOptionsProps {
-   values: PaddingValueTypes,
-   onChange: (value: PaddingValueTypes) => void;
+   values?: PaddingOptionValues,
+   onChange: (value: PaddingOptionValues) => void;
 }
 
 const PaddingOptions: FC<PaddingOptionsProps> = (
     { values, onChange }
 ) => {
 
-    const [sizingOptionValues, setSizingOptionValues] = useState(values);
+    const initalPaddingValues:PaddingOptionValues = {
+    }
 
-    const handleOptionChange = (changedValues: Partial<PaddingValueTypes>) => {
-        const newValues: PaddingValueTypes = { ...sizingOptionValues, ...changedValues };
+    const [sizingOptionValues, setSizingOptionValues] = useState(values?values:initalPaddingValues);
+
+    const handleOptionChange = (changedValues: Partial<PaddingOptionValues>) => {
+        const newValues: PaddingOptionValues = { ...sizingOptionValues, ...changedValues };
         setSizingOptionValues(newValues);
         onChange(newValues);
     };
