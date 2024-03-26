@@ -13,12 +13,12 @@ import HeightOptions, { HeightOptionValues } from '../../control-options/sizing-
 
 export interface ParagraphFragmentValues {
     type: "paragraph",
-    textValues: TextOptionValues,
-    textDecorationValues: TextDecorationOptionValues,
-    alignmentValue: string,
-    backgroundValues: BackgroundOptionValues,
-    paddingValues: PaddingOptionValues,
-    marginValues: MarginOptionValues,
+    textValues?: TextOptionValues,
+    textDecorationValues?: TextDecorationOptionValues,
+    alignmentValue?: string,
+    backgroundValues?: BackgroundOptionValues,
+    paddingValues?: PaddingOptionValues,
+    marginValues?: MarginOptionValues,
     widthValues: WidthOptionValues,
     heightValues: HeightOptionValues
 }

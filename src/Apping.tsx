@@ -153,7 +153,7 @@ const Apping: FC = () => {
 
     const initalHeightValues:HeightOptionValues = {
         height: 50,
-        perecntHeight: false,
+        percentHeight: false,
     }
 
     const initalWidthValues:WidthOptionValues = {

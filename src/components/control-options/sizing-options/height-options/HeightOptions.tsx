@@ -6,7 +6,7 @@ import CheckBox from '../../../inputs/checkbox/CheckBox';
 
 export interface HeightOptionValues {
     height: number;
-    perecntHeight: boolean;
+    percentHeight: boolean;
     minHeight?: number;
     maxHeight?: number;
 }
@@ -31,7 +31,7 @@ const HeightOptions: FC<HeightOptionsProps> = (
     return (
         <div>
             <NumberInput label={'Height'} value={sizingOptionValues.height} name={'Height'} onChange={(value: number) => handleOptionChange({ height: value })} type={'number'} max={1500} min={0} />
-            <CheckBox label={'% Height'} checked={sizingOptionValues.perecntHeight} onChange={(value: boolean) => handleOptionChange({ perecntHeight: value })} />
+            <CheckBox label={'% Height'} checked={sizingOptionValues.percentHeight} onChange={(value: boolean) => handleOptionChange({ percentHeight: value })} />
             <NumberInput label={'Min Height'} value={sizingOptionValues.minHeight} name={'minHeight'} onChange={(value: number) => handleOptionChange({ minHeight: value })} type={'number'} max={1500} min={0} />
             <NumberInput label={'Max Height'} value={sizingOptionValues.maxHeight} name={'maxHeight'} onChange={(value: number) => handleOptionChange({ maxHeight: value })} type={'number'} max={1500} min={0} />
         </div>
