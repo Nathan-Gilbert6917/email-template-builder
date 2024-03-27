@@ -11,8 +11,14 @@
 }
 
 .fragment-add-container {
+    width: 100%;
+    max-width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    gap: 6rem;
+    gap: 2rem;
+}
+
+.fragment-type-dropdown {
+    max-width: 300px;
 }

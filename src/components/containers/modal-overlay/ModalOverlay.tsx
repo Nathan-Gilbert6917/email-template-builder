@@ -22,7 +22,6 @@ const ModalOverlay: FC<ModalOverlayProps> = (
 
     const handleSubmit = () => {
         handleDone();
-        handleClose();
     };
 
     return (

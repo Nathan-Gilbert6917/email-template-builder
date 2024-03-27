@@ -7,7 +7,7 @@ import ColorInput from '../../inputs/color-input/ColorInput';
 import NumberInput from '../../inputs/number-input/NumberInput';
 
 
-export type TextDecorationStyleType = "normal" | "italic" | "oblique";
+export type TextDecorationStyleType = "solid" | "double" | "dotted" | "dashed" | "wavy";
 
 export interface TextDecorationOptionValuesValues {
     underlined: boolean;
@@ -38,26 +38,28 @@ const TextDecorationOptions: FC<TextDecorationOptionsProps> = (
     ]
 
     const textStyleOptions: DropDownSelectValue[] = [
-        { text: "normal", value: "normal"},
-        { text: "italic", value: "italic"},
-        { text: "oblique", value: "oblique"}
+        { text: "Solid", value: "solid"},
+        { text: "Double", value: "double"},
+        { text: "Dotted", value: "dotted"},
+        { text: "Dashed", value: "dashed"},
+        { text: "Wavy", value: "wavy"}
     ]
 
-    const initalTextDecorationValues:TextDecorationOptionValues = {
+    const initalTextDecorationValues: TextDecorationOptionValues = {
         values: {
             underlined: false,
             lineThrough: false,
-            overline: false,
+            overline: false
         },
-        style: "normal",
-        color: "#000000",
+        style: 'solid',
+        color: '',
         size: 0
     }
 
     const [textDecorationOptionValues, setTextDecorationOptionValues] = useState(values?values:initalTextDecorationValues);
 
     const isTextDecorationStyleType = (value: string): value is TextDecorationStyleType => {
-        return ["Arial", "Verdana", "Tahoma", "'Trebuchet MS'", "'Times New Roman'", "Georgia", "'Courier New'", "Roboto"].includes(value);
+        return ["solid", "double", "dotted", "dashed", "wavy"].includes(value);
     };
 
     const handleOptionChange = (changedValues: Partial<TextDecorationOptionValues>) => {
@@ -73,21 +75,26 @@ const TextDecorationOptions: FC<TextDecorationOptionsProps> = (
     }
 
     const handleTextDecorationValuesChange = (values: CheckboxOption[]) => {
+
+        let underlined = textDecorationOptionValues.values.underlined;
+        let lineThrough = textDecorationOptionValues.values.lineThrough;
+        let overlined = textDecorationOptionValues.values.overline;
+        
         values.forEach(({label, checked}: CheckboxOption) => {
             if (label === "Underline") {
-                textDecorationOptionValues.values.underlined = checked;
+                underlined = checked;
             }
             if (label === "Line Through") {
-                textDecorationOptionValues.values.lineThrough = checked;
+                lineThrough = checked;
             }
             if (label === "Overline") {
-                textDecorationOptionValues.values.overline = checked;
+                overlined = checked;
             }
         });
         handleOptionChange({ values: { 
-            underlined: textDecorationOptionValues.values.underlined, 
-            lineThrough: textDecorationOptionValues.values.lineThrough, 
-            overline: textDecorationOptionValues.values.overline 
+            underlined: underlined, 
+            lineThrough: lineThrough, 
+            overline: overlined
         }});
     }
 
@@ -96,7 +103,7 @@ const TextDecorationOptions: FC<TextDecorationOptionsProps> = (
             <CheckBoxGroup options={textValuesOptions} onChange={(values) => handleTextDecorationValuesChange(values)} />
             <DropDownSelect label={'Style'} value={textDecorationOptionValues.style} options={textStyleOptions} onChange={(value: string) => handleTextDecorationStyleChange(value)} />
             <ColorInput label={'Color'} value={textDecorationOptionValues.color} onChange={(value) => handleOptionChange({ color: value })} />
-            <NumberInput label={'Size'} value={textDecorationOptionValues.size} type={'number'} name={''} max={0} min={0} onChange={(value) => handleOptionChange({ size: value })} />
+            <NumberInput label={'Size'} value={textDecorationOptionValues.size} type={'number'} name={''} max={100} min={-100} onChange={(value) => handleOptionChange({ size: value })} />
         </div>
     );
 }

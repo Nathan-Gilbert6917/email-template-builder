@@ -56,7 +56,7 @@ const BackgroundOptions: FC<BackgroundOptionsProps> = (
     return (
         <div>
             <ColorInput label={'Background Color'} value={backgroundOptionValues.backgroundColor} onChange={(value: string) => handleOptionChange({ backgroundColor: value })}/>
-            <NumberInput label={'Border Radius'} type={'number'} name={'Border Radius'} value={backgroundOptionValues.borderRadius} max={0} min={100} onChange={(value: number) => handleOptionChange({ borderRadius: value })} />
+            <NumberInput label={'Border Radius'} type={'number'} name={'Border Radius'} value={backgroundOptionValues.borderRadius} max={100} min={0} onChange={(value: number) => handleOptionChange({ borderRadius: value })} />
             <CheckBox label={'Edit Border'} checked={backgroundOptionValues.borderSelected} onChange={(value: boolean) => handleOptionChange({ borderSelected: value })} />
             {backgroundOptionValues.borderSelected
                 ?<BorderOptions values={backgroundOptionValues.border} onChange={(value: BorderOptionValues) => handleOptionChange({ border: value})} />

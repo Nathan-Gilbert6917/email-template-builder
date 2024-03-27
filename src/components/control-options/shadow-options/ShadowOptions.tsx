@@ -39,7 +39,7 @@ const ShadowOptions: FC<ShadowOptionsProps> = (
     return (
         <div>
             <NumberInput label={'Horizontal Offset'} value={shadowOptionValues.horizontalOffset} type={'number'} name={'horizontalOffset'} max={100} min={-100} onChange={(value: number) => handleOptionChange({ horizontalOffset: value })}/>
-            <NumberInput label={'Vertical Offset'} value={shadowOptionValues.verticalOffset} type={'number'} name={'verticalOffset'} max={100} min={100} onChange={(value: number) => handleOptionChange({ verticalOffset: value })}/>
+            <NumberInput label={'Vertical Offset'} value={shadowOptionValues.verticalOffset} type={'number'} name={'verticalOffset'} max={100} min={-100} onChange={(value: number) => handleOptionChange({ verticalOffset: value })}/>
             <NumberInput label={'Blur Radius'} value={shadowOptionValues.blurRadius} type={'number'} name={'blurRadius'} max={100} min={-100} onChange={(value: number) => handleOptionChange({ blurRadius: value })}/>
             <NumberInput label={'Spread Radius'} value={shadowOptionValues.spreadRadius} type={'number'} name={'spreadRadius'} max={100} min={-100} onChange={(value: number) => handleOptionChange({ spreadRadius: value })}/>
             <ColorInput label={'Shadow Color'} value={shadowOptionValues.shadowColor} onChange={(value: string) => handleOptionChange({ shadowColor: value })} />

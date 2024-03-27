@@ -12,7 +12,7 @@ type TextFontType = "Arial" | "Verdana" | "Tahoma" | "'Trebuchet MS'" | "'Times 
 type TextStyleType = "normal" | "italic" | "oblique";
 
 export interface TextOptionValues {
-    text?: string;
+    text: string;
     font: TextFontType;
     fontSize: number;
     textColor: string;
@@ -47,6 +47,7 @@ const TextOptions: FC<TextOptionsProps> = (
     ]
 
     const initalTextValues:TextOptionValues = {
+        text: "",
         font: "Arial",
         fontSize: 12,
         textColor: "#000000",
@@ -87,7 +88,7 @@ const TextOptions: FC<TextOptionsProps> = (
         <div>
             <TextInput label={'Text'} value={textOptionValues.text} type={'text'} name={'text'} onChange={(value: string) => handleOptionChange({ text: value })} />
             <DropDownSelect label={'Font Family'} value={textOptionValues.font} options={fontFamilyOptions} onChange={(value: string) => handleTextFontChange(value)} />
-            <NumberInput label={'Font Size'} value={textOptionValues.fontSize} type={'number'} name={'fontSize'} max={0} min={0} onChange={(value: number) => handleOptionChange({ fontSize: value })} />
+            <NumberInput label={'Font Size'} value={textOptionValues.fontSize} type={'number'} name={'fontSize'} max={150} min={0} onChange={(value: number) => handleOptionChange({ fontSize: value })} />
             <ColorInput label={'Text Color'} value={textOptionValues.textColor} onChange={(value: string) => handleOptionChange({ textColor: value })} />
             <CheckBox label={'Bold Text'} checked={textOptionValues.boldText} onChange={(value: boolean) => handleOptionChange({ boldText: value })} />
             <DropDownSelect label={'Text Style'} value={textOptionValues.textStyle} options={textStyleOptions} onChange={(value: string) => handleTextStyleChange(value)} />

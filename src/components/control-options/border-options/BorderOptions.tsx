@@ -61,7 +61,7 @@ const BorderOptions: FC<BorderOptionsProps> = (
 
     return (
         <div>
-            <NumberInput label={'Border Size'} value={borderOptionValues.borderSize} type={'number'} name={''} max={0} min={100} onChange={(value: number) => handleOptionChange({ borderSize: value })}/>
+            <NumberInput label={'Border Size'} value={borderOptionValues.borderSize} type={'number'} name={'border'} max={100} min={0} onChange={(value: number) => handleOptionChange({ borderSize: value })}/>
             <DropDownSelect label={'Border Type'} value={borderOptionValues.borderType} options={borderTypeOptions} onChange={(value: string) => handleTypeChange(value)}/>
             <ColorInput label={'Border Color'} value={borderOptionValues.borderColor} onChange={(value: string) => handleOptionChange({ borderColor: value })}/>
         </div>

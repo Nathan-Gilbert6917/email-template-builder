@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react';
 import './ParagraphFragment.css';
 import TextOptions, { TextOptionValues } from '../../control-options/text-options/TextOptions';
 import TextDecorationOptions, { TextDecorationOptionValues } from '../../control-options/text-decoration-options/TextDecorationOptions';
-import AlignmentOptions from '../../control-options/alignment-options/AlignmentOptions';
+import AlignmentOptions, { AlignmentStyleType } from '../../control-options/alignment-options/AlignmentOptions';
 import BackgroundOptions, { BackgroundOptionValues } from '../../control-options/background-options/BackgroundOptions';
 import PaddingOptions, { PaddingOptionValues } from '../../control-options/spacing-options/padding-options/PaddingOptions';
 import MarginOptions, { MarginOptionValues } from '../../control-options/spacing-options/margin-options/MarginOptions';
@@ -14,8 +14,8 @@ import HeightOptions, { HeightOptionValues } from '../../control-options/sizing-
 export interface ParagraphFragmentValues {
     type: "paragraph",
     textValues?: TextOptionValues,
-    textDecorationValues?: TextDecorationOptionValues,
-    alignmentValue?: string,
+    textDecorationValues: TextDecorationOptionValues,
+    alignmentValue?: AlignmentStyleType,
     backgroundValues?: BackgroundOptionValues,
     paddingValues?: PaddingOptionValues,
     marginValues?: MarginOptionValues,
@@ -44,7 +44,7 @@ const ParagraphFragment: FC<ParagraphFragmentProps> = (
         <div className='paragraph-fragment-box'>
             <TextOptions values={values.textValues} onChange={(values:TextOptionValues) => handleOptionChange({ textValues: values })} />
             <TextDecorationOptions values={values.textDecorationValues} onChange={(values:TextDecorationOptionValues) => handleOptionChange({ textDecorationValues: values })} />
-            <AlignmentOptions value={values.alignmentValue} onChange={(value:string) => handleOptionChange({ alignmentValue: value })} />
+            <AlignmentOptions value={values.alignmentValue} onChange={(value:AlignmentStyleType) => handleOptionChange({ alignmentValue: value })} />
             <BackgroundOptions values={values.backgroundValues} onChange={(values:BackgroundOptionValues) => handleOptionChange({ backgroundValues: values })} />
             <PaddingOptions values={values.paddingValues} onChange={(values:PaddingOptionValues) => handleOptionChange({ paddingValues: values })} />
             <MarginOptions values={values.marginValues} onChange={(values:MarginOptionValues) => handleOptionChange({ marginValues: values })} />

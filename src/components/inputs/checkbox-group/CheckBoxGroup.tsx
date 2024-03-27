@@ -30,10 +30,12 @@ const CheckBoxGroup: FC<CheckBoxGroupProps> = (
         setSelectSome(!allChecked && !noneChecked);
     }, [options, allChecked, noneChecked]);
 
+    const [optionValues, setOptionValues] = useState(options);
+
     const handleCheckboxChange = (index: number, checked: boolean) => {
-        const newOptions = [...options];
-        newOptions[index].checked = checked;
-        onChange(newOptions);
+        optionValues[index].checked = checked
+        setOptionValues([...optionValues]);
+        onChange(optionValues);
     };
 
     const handleSelectAll = () => {

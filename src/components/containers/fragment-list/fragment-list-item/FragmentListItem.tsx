@@ -10,7 +10,11 @@ import { LinkButtonFragmentValues } from '../../../fragment-options/link-button/
 import { ParagraphFragmentValues } from '../../../fragment-options/paragraph/ParagraphFragment';
 import { fragmentTypeText } from '../../template-creator/TemplateCreator';
 
-export type FragmentTypes = HeaderFragmentValues | ParagraphFragmentValues | LinkButtonFragmentValues | ImageFragmentValues;
+export type FragmentTypes = InProgressFragment | HeaderFragmentValues | ParagraphFragmentValues | LinkButtonFragmentValues | ImageFragmentValues;
+
+interface InProgressFragment {
+    type: "in-progress";
+}
 
 export interface FragmentValues {
   id: string;

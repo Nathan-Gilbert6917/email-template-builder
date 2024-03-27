@@ -5,12 +5,12 @@ import FragmentListItem, { FragmentValues } from './fragment-list-item/FragmentL
 
 interface FragmentListProps {
     items: FragmentValues[];
+    onFragmentListUpdate: (value: FragmentValues[]) => void;
 }
 
 const FragmentList: FC<FragmentListProps> = (
-    { items }
+    { items, onFragmentListUpdate }
 ) => {
-    const [listItems, setListItems] = useState<FragmentValues[]>(items);
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
     e.dataTransfer.setData('index', index.toString());
@@ -22,16 +22,16 @@ const FragmentList: FC<FragmentListProps> = (
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>, index: number) => {
     const dragIndex = parseInt(e.dataTransfer.getData('index'));
-    const dragItem = listItems[dragIndex];
-    const updatedListItems = [...listItems];
+    const dragItem = items[dragIndex];
+    const updatedListItems = [...items];
     updatedListItems.splice(dragIndex, 1);
     updatedListItems.splice(index, 0, dragItem);
-    setListItems(updatedListItems);
+    onFragmentListUpdate(updatedListItems);
   };
 
   return (
     <div className='fragment-list-box'>
-      {listItems.map((item, index) => (
+      {items.map((item, index) => (
         <div
           key={item.id}
           onDragOver={(e) => handleDragOver(e)}
