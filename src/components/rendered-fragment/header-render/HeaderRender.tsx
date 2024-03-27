@@ -79,6 +79,7 @@ const HeaderRender: FC<HeaderRenderProps> = (
 
     const constructRender = (type: string | undefined, content: string | undefined) => {
         const styling = handleStyling();
+        console.log(type)
         if (type === 'h1') {
             return (
                 <h1 style={styling}>
@@ -121,6 +122,11 @@ const HeaderRender: FC<HeaderRenderProps> = (
                 </h6>
             );
         }
+        return (
+            <h1 style={styling}>
+                {content}
+            </h1>
+        );
     }
 
     return (

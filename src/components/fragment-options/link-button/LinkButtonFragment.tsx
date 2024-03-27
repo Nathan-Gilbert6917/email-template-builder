@@ -43,7 +43,7 @@ const LinkButtonFragment: FC<LinkButtonFragmentProps> = (
     };
 
     return (
-        <div>
+        <div className='link-button-fragment-box'>
             <LinkButtonOptions values={values.linkButtonValues} onChange={(values:LinkButtonOptionValues) => handleOptionChange({ linkButtonValues: values })} />
             <TextOptions values={values.textValues} onChange={(values:TextOptionValues) => handleOptionChange({ textValues: values })} />
             <TextDecorationOptions values={values.textDecorationValues} onChange={(values:TextDecorationOptionValues) => handleOptionChange({ textDecorationValues: values })} />

@@ -1,15 +1,16 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
 import './FragmentList.css';
-import FragmentListItem, { FragmentValues } from './fragment-list-item/FragmentListItem';
+import FragmentListItem, { FragmentTypes, FragmentValues } from './fragment-list-item/FragmentListItem';
 
 interface FragmentListProps {
     items: FragmentValues[];
+    onFragmentEdit: (content: FragmentTypes, id:string) => void;
     onFragmentListUpdate: (value: FragmentValues[]) => void;
 }
 
 const FragmentList: FC<FragmentListProps> = (
-    { items, onFragmentListUpdate }
+    { items, onFragmentEdit, onFragmentListUpdate }
 ) => {
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>, index: number) => {
@@ -29,6 +30,18 @@ const FragmentList: FC<FragmentListProps> = (
     onFragmentListUpdate(updatedListItems);
   };
 
+  const handleDelete = (id: string) => {
+    const listItem = items.filter((item, index) => {if(item.id === id){ return index} return false});
+    const updatedListItems = [...items];
+    const listIndex = items.indexOf(listItem[0]);
+    updatedListItems.splice(listIndex, 1);
+    onFragmentListUpdate(updatedListItems);
+  }
+
+  const handleEdit = (content:FragmentTypes ,id: string) => {
+    onFragmentEdit(content, id);
+  }
+
   return (
     <div className='fragment-list-box'>
       {items.map((item, index) => (
@@ -41,6 +54,8 @@ const FragmentList: FC<FragmentListProps> = (
             id={item.id}
             content={item.content}
             onDragStart={(e) => handleDragStart(e, index)}
+            onEdit={(content, id) => handleEdit(content, id)}
+            onDelete={(id) => handleDelete(id)}
           />
         </div>
       ))}

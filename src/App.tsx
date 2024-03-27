@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import './App.css';
 import TemplateRenderer from './components/containers/template-renderer/TemplateRenderer';
 import TemplateCreator from './components/containers/template-creator/TemplateCreator';
-import { FragmentValues } from './components/containers/fragment-list/fragment-list-item/FragmentListItem';
+import { FragmentTypes, FragmentValues } from './components/containers/fragment-list/fragment-list-item/FragmentListItem';
 
 const App = () => {
 

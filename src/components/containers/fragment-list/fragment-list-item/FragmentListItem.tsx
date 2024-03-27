@@ -24,11 +24,13 @@ export interface FragmentValues {
 interface FragmentListItemProps {
     id: string;
     content: FragmentTypes;
+    onEdit: (content: FragmentTypes, id:string) => void;
+    onDelete: (id:string) => void;
     onDragStart: (e: DragEvent<HTMLDivElement>, id: string) => void;
 }
 
 const FragmentListItem: FC<FragmentListItemProps> = (
-    { id, content, onDragStart } 
+    { id, content, onEdit, onDelete, onDragStart } 
 ) => {
 
     const handleDragStart = (e: DragEvent<HTMLDivElement>) => {
@@ -39,6 +41,14 @@ const FragmentListItem: FC<FragmentListItemProps> = (
 
     const handleHideClick = () => {
         setHideIcon(!hideIcon);
+    }
+
+    const handleEditClick = () => {
+        onEdit(content, id);
+    }
+
+    const handleDeleteClick = () => {
+        onDelete(id);
     }
 
     const name = () => {
@@ -60,10 +70,10 @@ const FragmentListItem: FC<FragmentListItemProps> = (
                     <IconButton color={"#11111188"} icon={<FontAwesomeIcon icon={hideIcon ? faEye: faEyeSlash} />} onClick={handleHideClick}/>
                 </span>
                 <span className='fragment-item-edit-icon'>
-                    <IconButton color={"#11111188"} icon={<FontAwesomeIcon icon={faEdit} />} onClick={()=>{alert('Edit '+id)}} />
+                    <IconButton color={"#11111188"} icon={<FontAwesomeIcon icon={faEdit} />} onClick={handleEditClick} />
                 </span>
                 <span className='fragment-item-delete-icon'>
-                    <IconButton color={"#11111188"} icon={<FontAwesomeIcon icon={faTrash} />} onClick={()=>{alert('Trash '+id)}} />
+                    <IconButton color={"#11111188"} icon={<FontAwesomeIcon icon={faTrash} />} onClick={handleDeleteClick} />
                 </span>
             </span>
         </div>

@@ -12,7 +12,7 @@ const TemplateRenderer: FC<TemplateRendererProps> = (
     { fragment }
 ) => {
 
-    const s = () => {
+    const render = () => {
         if (fragment.content.type === "header") {
             return <HeaderRender values={fragment.content} />
         }
@@ -20,7 +20,7 @@ const TemplateRenderer: FC<TemplateRendererProps> = (
 
     return (
         <div className='template-renderer'>
-            {s()}
+            {render()}
         </div>
     );
 }

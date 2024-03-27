@@ -9,7 +9,7 @@ import DropDownSelect, { DropDownSelectValue } from '../../inputs/dropdown-selec
 import HeaderFragment, { HeaderFragmentValues } from '../../fragment-options/header/HeaderFragment';
 import LinkButtonFragment, { LinkButtonFragmentValues } from '../../fragment-options/link-button/LinkButtonFragment';
 import ImageFragment, { ImageFragmentValues } from '../../fragment-options/image/ImageFragment';
-import { FragmentValues } from '../fragment-list/fragment-list-item/FragmentListItem';
+import { FragmentTypes, FragmentValues } from '../fragment-list/fragment-list-item/FragmentListItem';
 import FragmentList from '../fragment-list/FragmentList';
 import { v4 as uuidv4 } from 'uuid';
 import { TextDecorationOptionValues } from '../../control-options/text-decoration-options/TextDecorationOptions';
@@ -57,7 +57,7 @@ const TemplateCreator: FC<TemplateCreatorProps> = (
     const [showModal, setShowModal] = useState<boolean>(false);
     const [fragmentTypeSelected, setFragmentTypeSelected] = useState<FragmentType>("header");
     const [fragmentInProgress, setFragmentInProgress] = useState<FragmentValues>(initialInProgressFragment);
-    
+    const [editingFragment, setEditingFragment] = useState<boolean>(false);
 
     const handleModalShow = () => {
         setShowModal(prevState => (!prevState));
@@ -73,16 +73,28 @@ const TemplateCreator: FC<TemplateCreatorProps> = (
         setFragmentInProgress(prevState => ({...prevState, id: uuidv4(), content: values}));
     }
 
-    const handleAddFragment = () => {
-        handleModalShow();
-    }
+    
 
     const handleModalDone = () => {
-        if (fragmentInProgress.id !== "fragment-inprogress" && fragmentInProgress.content.type !== "in-progress") {
+        if (!editingFragment && fragmentInProgress.id !== "fragment-inprogress" && fragmentInProgress.content.type !== "in-progress") {
             onAddFragment(fragmentInProgress);
             setFragmentInProgress(initialInProgressFragment);
             handleModalShow();
+        } 
+        if (editingFragment) {
+            editFragment(fragmentInProgress);
+            setEditingFragment(false);
+            handleModalShow();
         }
+    }
+
+    const editFragment = (fragment:FragmentValues) => {
+        
+        const listItem = fragments.filter((item, index) => {if(item.id === fragment.id){ return index} return false});
+        const updatedListItems = [...fragments];
+        const listIndex = fragments.indexOf(listItem[0]);
+        updatedListItems[listIndex] = fragment;
+        onFragmentListUpdate(updatedListItems);
     }
 
     const initalTextDecorationValues:TextDecorationOptionValues = {
@@ -129,6 +141,38 @@ const TemplateCreator: FC<TemplateCreatorProps> = (
         heightValues: { height: 100, percentHeight: false }
     }
 
+    const handleAddFragment = () => {
+
+        if (fragmentTypeSelected === "header") {
+            setFragmentInProgress({
+                id: fragmentInProgress.id,
+                content: headerFragmentState
+            })
+        }
+
+        if (fragmentTypeSelected === "image") {
+            setFragmentInProgress({
+                id: fragmentInProgress.id,
+                content: imageFragmentState
+            })
+        }
+
+        if (fragmentTypeSelected === "link-button") {
+            setFragmentInProgress({
+                id: fragmentInProgress.id,
+                content: linkButtonFragmentState
+            })
+        }
+
+        if (fragmentTypeSelected === "paragraph") {
+            setFragmentInProgress({
+                id: fragmentInProgress.id,
+                content: paragraphFragmentState
+            })
+        }
+        handleModalShow();
+    }
+
     const getFragmentReactElement = () => {
         if (fragmentTypeSelected === "header") {
             return <HeaderFragment values={headerFragmentState} onChange={handleFragmentUpdate} />
@@ -144,11 +188,18 @@ const TemplateCreator: FC<TemplateCreatorProps> = (
         }
     }
 
+    const handleFragmentEdit = (content: FragmentTypes, id: string) => {
+        setEditingFragment(true);
+        const fragment = {...initialInProgressFragment, content: content}
+        setFragmentInProgress(fragment);
+        handleModalShow();
+    }
+
     return (
         <div className='template-creator-box'>
             <div className='fragment-list-container'>
                 <h2>Template Fragments</h2>
-                <FragmentList items={fragments} onFragmentListUpdate={onFragmentListUpdate} />
+                <FragmentList items={fragments} onFragmentEdit={(content: FragmentTypes, id: string) => handleFragmentEdit(content, id)} onFragmentListUpdate={onFragmentListUpdate} />
             </div>
             <div className='fragment-add-container'>
                 <span className='fragment-type-dropdown'>

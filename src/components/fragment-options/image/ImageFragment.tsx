@@ -38,7 +38,7 @@ const ImageFragment: FC<ImageFragmentProps> = (
     };
 
     return (
-        <div>
+        <div className='image-fragment-box'>
             <ImageOptions values={values.imageValues} onChange={(value:ImageOptionValues) => handleOptionChange({ imageValues: value })} />
             <AlignmentOptions value={values.alignmentValue} onChange={(value:AlignmentStyleType) => handleOptionChange({ alignmentValue: value })} />
             <BackgroundOptions values={values.backgroundValues} onChange={(values:BackgroundOptionValues) => handleOptionChange({ backgroundValues: values })} />

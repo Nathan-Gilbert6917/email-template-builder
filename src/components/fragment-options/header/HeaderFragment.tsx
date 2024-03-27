@@ -43,7 +43,7 @@ const HeaderFragment: FC<HeaderFragmentProps> = (
     };
 
     return (
-        <div>
+        <div className='header-fragment-box'>
             <HeaderOptions value={values.headerValue} onChange={(value:HeaderOptionValues) => handleOptionChange({ headerValue: value })} />
             <TextOptions values={values.textValues} onChange={(values:TextOptionValues) => handleOptionChange({ textValues: values })} />
             <TextDecorationOptions values={values.textDecorationValues} onChange={(values:TextDecorationOptionValues) => handleOptionChange({ textDecorationValues: values })} />
